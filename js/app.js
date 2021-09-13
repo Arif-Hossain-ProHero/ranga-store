@@ -12,6 +12,8 @@ const showProducts = (products) => {
   for (const product of allProducts) {
     console.log(product);
     const image = product.image;
+    let percentage = (product.rating.rate / 5) * 100;
+    const starPercentage = percentage+"%"
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = `<div class="single-product">
@@ -20,7 +22,11 @@ const showProducts = (products) => {
       </div>
       <h3>${product.title}</h3>
       <p>Category: ${product.category}</p>
-      <h2>Price: $ ${product.price}</h2>
+      <div id="stars-inner" class="stars-outer">
+        <div style="width:${starPercentage}" class="stars-inner"></div>
+      </div>
+      <span>${product.rating.count}</span>
+      <h3>Price: $ ${product.price}</h3>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
       <button id="details-btn" class="btn btn-danger">Details</button></div>
       `;

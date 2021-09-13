@@ -2,7 +2,7 @@ body {
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
 }
-.search-field {
+/* .search-field {
   border: none;
   border-radius: 50px;
   padding: 5px;
@@ -22,6 +22,19 @@ body {
 }
 .search-button {
   margin-left: 25px;
+} */
+main {
+  margin-top: 100px;
+}
+.navbar {
+  background-color: #0071dc;
+}
+.navbar-toggler-icon {
+  color: white;
+}
+#button-addon2 {
+  background-color: green;
+  color: white;
 }
 #all-products {
   display: grid;
@@ -81,4 +94,32 @@ body {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
   }
+}
+/* -----------rating--------------- */
+.stars-outer {
+  position: relative;
+  display: inline-block;
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 0;
+  white-space: nowrap;
+}
+
+.stars-outer::before {
+  content: "\f005 \f005 \f005 \f005 \f005 ";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: rgb(185, 179, 179);
+}
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005 ";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #4cae4c;
 }
