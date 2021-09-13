@@ -26,7 +26,7 @@ const showProducts = (products) => {
       <div id="stars-inner" class="stars-outer">
         <div style="width:${starPercentage}" class="stars-inner"></div>
       </div>
-      <span>${product.rating.count}</span>
+      <span>${product.rating.count} ratings</span>
       <h3>Price: $ ${product.price}</h3>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-info">add to cart</button>
       <button id="details-btn" onclick="getDetails(${product.id})" class="btn btn-primary">Details</button></div>
@@ -119,7 +119,7 @@ showDetails = data => {
       <div id="stars-inner" class="stars-outer">
         <div style="width:${starPercentage}" class="stars-inner"></div>
       </div>
-      <span>${data.rating.count}</span>
+      <span>${data.rating.count} ratings</span>
       <h3>Price: $ ${data.price}</h3>
         <p class="card-text"><span class="fs-5 fw-bold">Description: </span>${data.description}</p>
         <button onclick="addToCart(${data.id},${data.price})" id="addToCart-btn" class="buy-now btn btn-info">add to cart</button>
