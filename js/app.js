@@ -10,10 +10,11 @@ loadProducts();
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
-    console.log(product);
     const image = product.image;
+    // rating
     let percentage = (product.rating.rate / 5) * 100;
-    const starPercentage = percentage+"%"
+    const starPercentage = percentage + "%"
+    // create dom
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = `<div class="single-product">
@@ -28,7 +29,7 @@ const showProducts = (products) => {
       <span>${product.rating.count}</span>
       <h3>Price: $ ${product.price}</h3>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-info">add to cart</button>
-      <button id="details-btn" class="btn btn-primary">Details</button></div>
+      <button id="details-btn" onclick="getDetails(${product.id})" class="btn btn-primary">Details</button></div>
       `;
     
     document.getElementById("all-products").appendChild(div);
@@ -88,3 +89,44 @@ const updateTotal = () => {
     getInputValue("total-tax");
   document.getElementById("total").innerText = grandTotal.toFixed(2);
 };
+
+//-------------------get single product details-------------------//
+const getDetails = id => {
+  const url = `https://fakestoreapi.com/products/${id}`;
+  fetch(url)
+    .then(res => res.json())
+    .then(data => showDetails(data));
+}
+// single product UI show
+showDetails = data => {
+  console.log(data);
+  // rating
+  let percentage = (data.rating.rate / 5) * 100;
+  const starPercentage = percentage + "%"
+  const allProducts = document.getElementById('all-products');
+  allProducts.innerHTML = "";
+  const div = document.createElement('div');
+  div.innerHTML = `
+  <div class="card my-4" style="max-width: 70%;">
+  <div class="row g-0">
+    <div class="col-md-4 pe-4">
+      <img src="${data.image}" class="img-fluid rounded-start" alt="product">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">${data.title}</h5>
+        <p>Category: ${data.category}</p>
+      <div id="stars-inner" class="stars-outer">
+        <div style="width:${starPercentage}" class="stars-inner"></div>
+      </div>
+      <span>${data.rating.count}</span>
+      <h3>Price: $ ${data.price}</h3>
+        <p class="card-text"><span class="fs-5 fw-bold">Description: </span>${data.description}</p>
+        <button onclick="addToCart(${data.id},${data.price})" id="addToCart-btn" class="buy-now btn btn-info">add to cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+  `;
+  main.appendChild(div);
+}
